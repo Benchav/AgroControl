@@ -182,10 +182,10 @@ export default function Cultivos() {
                     <SelectValue placeholder="Seleccionar planta" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Tomate Cherry">Tomate Cherry</SelectItem>
-                    <SelectItem value="Lechuga Romana">Lechuga Romana</SelectItem>
-                    <SelectItem value="Pimiento Rojo">Pimiento Rojo</SelectItem>
-                    <SelectItem value="Zanahoria">Zanahoria</SelectItem>
+                    <SelectItem value="Tomate Cherry" className="focus:bg-green-500">Tomate Cherry</SelectItem>
+                    <SelectItem value="Lechuga Romana" className="focus:bg-green-500">Lechuga Romana</SelectItem>
+                    <SelectItem value="Pimiento Rojo" className="focus:bg-green-500">Pimiento Rojo</SelectItem>
+                    <SelectItem value="Zanahoria" className="focus:bg-green-500">Zanahoria</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
