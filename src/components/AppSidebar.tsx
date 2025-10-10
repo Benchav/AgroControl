@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/sidebar";
 
 const items = [
-  { title: "Dashboard", url: "/", icon: LayoutDashboard },
+  { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
   { title: "Gestión de Riego", url: "/riego", icon: Droplets },
   { title: "Control de Cultivos", url: "/cultivos", icon: Sprout },
   { title: "Catálogo de Plantas", url: "/catalogo", icon: BookOpen },

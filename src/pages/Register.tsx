@@ -46,7 +46,6 @@ export default function RegistroUsuario({ onSuccess }: { onSuccess?: (data: Form
     if (!validate()) return;
     setSubmitting(true);
     try {
-     
       await new Promise((r) => setTimeout(r, 900));
       setMessage("Cuenta creada con éxito.");
       onSuccess?.(form);
@@ -63,10 +62,8 @@ export default function RegistroUsuario({ onSuccess }: { onSuccess?: (data: Form
       <div className="w-full max-w-lg bg-white rounded-2xl shadow-2xl p-10">
         {/* Logo */}
         <div className="flex flex-col items-center mb-6">
-          {/* Sustituye la línea siguiente por: <img src="/logo.png" alt="AgroControl" className="h-16"/> */}
-          <div className="h-16 w-16 rounded-full flex items-center justify-center border-2 border-green-700">
-            <span className="text-green-700 font-bold">AC</span>
-          </div>
+          {/* Coloca AgroControl_Log.png en /public para que se cargue desde '/AgroControl_Log.png' */}
+          <img src="/AgroControl_Log.png" alt="AgroControl" className="h-16 object-contain" />
         </div>
 
         <h1 className="text-3xl font-semibold text-green-900 text-center mb-6">Crea tu Cuenta</h1>

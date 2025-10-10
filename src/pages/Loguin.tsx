@@ -13,12 +13,15 @@ export default function Loguin({ onSuccess }: Props) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // Expresión regular estándar para validar formato de correo
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const validate = () => {
     const e: typeof errors = {};
-    if (!email.trim()) e.email = "El correo es obligatorio.";
-    else if (!emailRegex.test(email)) e.email = "Introduce un correo válido.";
+    const normalizedEmail = email.trim().toLowerCase();
+
+    if (!normalizedEmail) e.email = "El correo es obligatorio.";
+    else if (!emailRegex.test(normalizedEmail)) e.email = "Introduce un correo válido.";
     if (!password) e.password = "La contraseña es obligatoria.";
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -30,22 +33,19 @@ export default function Loguin({ onSuccess }: Props) {
     if (!validate()) return;
     setLoading(true);
     try {
-      // Reemplaza esta simulación con tu llamada real (fetch/axios)
-      // Ejemplo con fetch:
-      // const res = await fetch('/api/auth/login', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ email, password }) });
-      // const data = await res.json();
-      // if (!res.ok) throw new Error(data.message || 'Error al iniciar sesión');
+      // Normalizamos el correo para cualquier uso posterior
+      const normalizedEmail = email.trim().toLowerCase();
 
-      await new Promise((r) => setTimeout(r, 800)); // simulación
+      // Simulación de petición - reemplaza por tu lógica real
+      await new Promise((r) => setTimeout(r, 800));
       const fakeToken = "fake-jwt-token";
 
-      // Guardar token si el usuario eligió recordar
       if (remember) localStorage.setItem("auth_token", fakeToken);
       else sessionStorage.setItem("auth_token", fakeToken);
 
       onSuccess?.(fakeToken);
 
-      // Redirige al dashboard (ajusta la ruta según tu app)
+      // Si quieres que vaya a "/" en lugar de "/dashboard" cámbialo aquí
       navigate("/dashboard");
     } catch (err: any) {
       setErrors({ global: err?.message || "Error al iniciar sesión. Intenta de nuevo." });
@@ -58,9 +58,8 @@ export default function Loguin({ onSuccess }: Props) {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8">
         <div className="flex flex-col items-center mb-6">
-          <div className="h-14 w-14 rounded-full flex items-center justify-center border-2 border-green-700">
-            <span className="text-green-700 font-bold">AC</span>
-          </div>
+          {/* Logo: coloca AgroControl_Log.png en la carpeta public para que se cargue desde '/AgroControl_Log.png' */}
+          <img src="/AgroControl_Log.png" alt="AgroControl" className="h-14 object-contain" />
         </div>
 
         <h1 className="text-2xl font-semibold text-green-900 text-center mb-6">Inicia Sesión</h1>
@@ -71,6 +70,7 @@ export default function Loguin({ onSuccess }: Props) {
               <label className="sr-only" htmlFor="email">Correo electrónico</label>
               <input
                 id="email"
+                // <-- tipo corregido a "email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
