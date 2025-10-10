@@ -43,7 +43,7 @@ export default function Riego() {
         <p className="text-muted-foreground">Diseña tu sistema de riego optimizado</p>
       </div>
 
-      <Card className="border-accent/50 bg-gradient-sky">
+      <Card className="bg-green-500">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-white">
             <Droplets className="h-6 w-6" />
@@ -57,7 +57,7 @@ export default function Riego() {
           </p>
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-              <Button variant="secondary" size="lg">
+              <Button variant="secondary" size="lg" className="bg-gradient-to-r from-green-800 to-green-600 font-bold">
                 Iniciar Configuración
               </Button>
             </DialogTrigger>
@@ -114,7 +114,7 @@ export default function Riego() {
                     />
                   </div>
                   <div className="flex justify-end gap-2 pt-4">
-                    <Button variant="outline" onClick={() => setOpen(false)}>Cancelar</Button>
+                    <Button variant="destructive" onClick={() => setOpen(false)}>Cancelar</Button>
                     <Button onClick={handleSubmit}>Generar Recomendación</Button>
                   </div>
                 </div>
