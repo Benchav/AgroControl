@@ -14,7 +14,8 @@ const recomendaciones2x2 = [
       { nombre: "Zanahorias", cantidad: 4 },
     ],
     razon: "Compatibles en agua y luz, diferentes profundidades de raíz",
-    esquema: "2 filas de lechugas + rábanos intercalados + zanahorias en bordes",
+    esquema:
+      "2 filas de lechugas + rábanos intercalados + zanahorias en bordes",
   },
   {
     id: 2,
@@ -36,7 +37,8 @@ const recomendaciones2x2 = [
       { nombre: "Rúcula", cantidad: 6 },
     ],
     razon: "Asociación clásica, tomate y albahaca se benefician mutuamente",
-    esquema: "Tomate al centro con tutor, albahaca alrededor, rúcula en espacios",
+    esquema:
+      "Tomate al centro con tutor, albahaca alrededor, rúcula en espacios",
   },
 ];
 
@@ -51,7 +53,8 @@ const recomendaciones4x4 = [
       { nombre: "Lechugas", cantidad: 8 },
     ],
     razon: "Combinación productiva, altura variada, maximiza espacio vertical",
-    esquema: "Tomates y pimientos con tutores en fondo, albahaca intermedia, lechugas al frente",
+    esquema:
+      "Tomates y pimientos con tutores en fondo, albahaca intermedia, lechugas al frente",
   },
   {
     id: 2,
@@ -62,7 +65,8 @@ const recomendaciones4x4 = [
       { nombre: "Cebollas", cantidad: 20 },
       { nombre: "Lechugas", cantidad: 8 },
     ],
-    razon: "Aprovecha diferentes profundidades de suelo, rotación rápida de rábanos",
+    razon:
+      "Aprovecha diferentes profundidades de suelo, rotación rápida de rábanos",
     esquema: "Filas intercaladas por tipo, lechugas en esquinas",
   },
   {
@@ -74,21 +78,28 @@ const recomendaciones4x4 = [
       { nombre: "Rábanos", cantidad: 30 },
       { nombre: "Espinacas", cantidad: 16 },
     ],
-    razon: "Usa espacio vertical (judías), cultivos rápidos (rábanos) rellenan mientras crecen los demás",
-    esquema: "Judías con tutores en perímetro, calabacín al centro, rábanos y espinacas intercalados",
+    razon:
+      "Usa espacio vertical (judías), cultivos rápidos (rábanos) rellenan mientras crecen los demás",
+    esquema:
+      "Judías con tutores en perímetro, calabacín al centro, rábanos y espinacas intercalados",
   },
 ];
 
 export default function Recomendaciones() {
   const [selectedSize, setSelectedSize] = useState<"2x2" | "4x4">("2x2");
 
-  const currentRecomendaciones = selectedSize === "2x2" ? recomendaciones2x2 : recomendaciones4x4;
+  const currentRecomendaciones =
+    selectedSize === "2x2" ? recomendaciones2x2 : recomendaciones4x4;
 
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-3xl font-bold text-foreground mb-2">Recomendaciones de Siembra</h2>
-        <p className="text-muted-foreground">Combina cultivos ideales para espacios reducidos</p>
+        <h2 className="text-3xl font-bold text-foreground mb-2">
+          Recomendaciones de Siembra
+        </h2>
+        <p className="text-muted-foreground">
+          Combina cultivos ideales para espacios reducidos
+        </p>
       </div>
 
       <Card className="bg-gradient-primary border-0 text-primary-foreground">
@@ -101,18 +112,24 @@ export default function Recomendaciones() {
         <CardContent>
           <div className="flex gap-4">
             <Button
-              variant={selectedSize === "2x2" ? "secondary" : "outline"}
               size="lg"
               onClick={() => setSelectedSize("2x2")}
-              className="flex-1"
+              className={`flex-1 ${
+                selectedSize === "2x2"
+                  ? "bg-gradient-to-r from-green-800 to-green-600"
+                  : "border-white border-2 text-white bg-transparent"
+              }`}
             >
               2m × 2m
             </Button>
             <Button
-              variant={selectedSize === "4x4" ? "secondary" : "outline"}
               size="lg"
               onClick={() => setSelectedSize("4x4")}
-              className="flex-1"
+              className={`flex-1 ${
+                selectedSize === "4x4"
+                  ? "bg-gradient-to-r from-green-800 to-green-600"
+                  : "border-white border-2 text-white bg-transparent"
+              }`}
             >
               4m × 4m
             </Button>
@@ -126,12 +143,14 @@ export default function Recomendaciones() {
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 {rec.nombre}
-                <Badge variant="secondary">{selectedSize}</Badge>
+                <Badge className="bg-green-600">{selectedSize}</Badge>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="font-semibold mb-2 text-sm text-muted-foreground">Plantas Incluidas:</h4>
+                <h4 className="font-semibold mb-2 text-sm text-muted-foreground">
+                  Plantas Incluidas:
+                </h4>
                 <div className="grid grid-cols-2 gap-2">
                   {rec.plantas.map((planta, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-sm">
@@ -145,12 +164,16 @@ export default function Recomendaciones() {
               </div>
 
               <div className="p-3 bg-muted rounded-lg">
-                <h4 className="font-semibold mb-1 text-sm">¿Por qué esta combinación?</h4>
+                <h4 className="font-semibold mb-1 text-sm">
+                  ¿Por qué esta combinación?
+                </h4>
                 <p className="text-sm text-muted-foreground">{rec.razon}</p>
               </div>
 
               <div className="p-3 bg-primary/10 rounded-lg border border-primary/20">
-                <h4 className="font-semibold mb-1 text-sm">Distribución Sugerida:</h4>
+                <h4 className="font-semibold mb-1 text-sm">
+                  Distribución Sugerida:
+                </h4>
                 <p className="text-sm">{rec.esquema}</p>
               </div>
 
@@ -172,7 +195,8 @@ export default function Recomendaciones() {
             <div>
               <p className="font-medium">Aprovecha la verticalidad</p>
               <p className="text-sm text-muted-foreground">
-                Usa tutores, enrejados y plantas trepadoras para maximizar el espacio
+                Usa tutores, enrejados y plantas trepadoras para maximizar el
+                espacio
               </p>
             </div>
           </div>
@@ -190,7 +214,8 @@ export default function Recomendaciones() {
             <div>
               <p className="font-medium">Asociaciones beneficiosas</p>
               <p className="text-sm text-muted-foreground">
-                Tomates con albahaca, zanahorias con cebollas - se protegen mutuamente
+                Tomates con albahaca, zanahorias con cebollas - se protegen
+                mutuamente
               </p>
             </div>
           </div>
