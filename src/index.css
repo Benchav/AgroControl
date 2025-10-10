@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Nature-inspired color palette */
+    --background: 40 20% 97%;
+    --foreground: 145 30% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 145 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 145 30% 15%;
+
+    /* Green primary - fresh plant color */
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 142 70% 45%;
+
+    /* Earth brown secondary */
+    --secondary: 25 45% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 40 20% 94%;
+    --muted-foreground: 145 15% 40%;
+
+    /* Sky blue accent */
+    --accent: 200 80% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Warning/Alert colors */
+    --warning: 45 93% 47%;
+    --warning-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Success green */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 145 20% 88%;
+    --input: 145 20% 88%;
+    --ring: 142 76% 36%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar colors */
+    --sidebar-background: 145 40% 8%;
+    --sidebar-foreground: 40 20% 95%;
+    --sidebar-primary: 142 76% 36%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 145 40% 12%;
+    --sidebar-accent-foreground: 40 20% 95%;
+    --sidebar-border: 145 40% 15%;
+    --sidebar-ring: 142 76% 36%;
+
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 70% 45%));
+    --gradient-earth: linear-gradient(135deg, hsl(25 45% 45%), hsl(25 55% 55%));
+    --gradient-sky: linear-gradient(135deg, hsl(200 80% 55%), hsl(200 70% 65%));
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-glow: 0 0 20px hsl(142 76% 36% / 0.3);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 145 40% 8%;
+    --foreground: 40 20% 95%;
+
+    --card: 145 35% 12%;
+    --card-foreground: 40 20% 95%;
+
+    --popover: 145 35% 12%;
+    --popover-foreground: 40 20% 95%;
+
+    --primary: 142 70% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 142 76% 36%;
+
+    --secondary: 25 40% 35%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 145 30% 18%;
+    --muted-foreground: 40 15% 65%;
+
+    --accent: 200 70% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --warning: 45 93% 47%;
+    --warning-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 70% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 145 30% 20%;
+    --input: 145 30% 20%;
+    --ring: 142 70% 45%;
+
+    --sidebar-background: 145 40% 8%;
+    --sidebar-foreground: 40 20% 95%;
+    --sidebar-primary: 142 70% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 145 40% 12%;
+    --sidebar-accent-foreground: 40 20% 95%;
+    --sidebar-border: 145 40% 15%;
+    --sidebar-ring: 142 70% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
