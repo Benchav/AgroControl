@@ -119,7 +119,7 @@ export default function Riego() {
                   </div>
                 </div>
               ) : (
-                <div className="space-y-6 py-4">
+                <div className="space-y-6 py-4 overflow-y-auto max-h-[80vh]">
                   <div className="flex items-center gap-2 text-success">
                     <CheckCircle2 className="h-6 w-6" />
                     <h3 className="text-lg font-semibold">Recomendación Generada</h3>
