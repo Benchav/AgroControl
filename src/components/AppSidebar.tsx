@@ -5,7 +5,8 @@ import {
   BookOpen, 
   MessageSquare, 
   Lightbulb,
-  User 
+  User, 
+  LogOut
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import {
@@ -28,6 +29,7 @@ const items = [
   { title: "Comunidad", url: "/comunidad", icon: MessageSquare },
   { title: "Recomendaciones", url: "/recomendaciones", icon: Lightbulb },
   { title: "Perfil", url: "/perfil", icon: User },
+  { title: "Cerrar sesión", url: "/", icon: LogOut },
 ];
 
 export function AppSidebar() {
