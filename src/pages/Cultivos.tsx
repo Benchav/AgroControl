@@ -1,14 +1,26 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Calendar, MapPin, Leaf, Sprout } from "lucide-react";
 
-const mockLotes = [
+const initialLotes = [
   {
     id: "L001",
     nombre: "Lote Tomates Cherry",
@@ -42,14 +54,74 @@ const mockLotes = [
 ];
 
 export default function Cultivos() {
+  const [lotes, setLotes] = useState(initialLotes);
   const [open, setOpen] = useState(false);
-  const [selectedLote, setSelectedLote] = useState<typeof mockLotes[0] | null>(null);
+  const [selectedLote, setSelectedLote] = useState<typeof initialLotes[0] | null>(null);
+
+  // Campos del formulario
+  const [formData, setFormData] = useState({
+    nombre: "",
+    planta: "",
+    fechaSiembra: "",
+    ubicacion: "",
+    plantas: 0,
+  });
+
+  // Manejador de cambios de inputs/selects
+  const handleChange = (field: string, value: string | number) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  // Crear o editar lote
+  const handleSave = () => {
+    if (selectedLote) {
+      // Editar existente
+      setLotes((prev) =>
+        prev.map((l) =>
+          l.id === selectedLote.id
+            ? { ...l, ...formData, plantas: Number(formData.plantas) }
+            : l
+        )
+      );
+    } else {
+      // Crear nuevo
+      const newLote = {
+        id: `L${(lotes.length + 1).toString().padStart(3, "0")}`,
+        nombre: formData.nombre,
+        planta: formData.planta,
+        fechaSiembra: formData.fechaSiembra,
+        diasTranscurridos: 0,
+        estado: "Creciendo",
+        ubicacion: formData.ubicacion,
+        plantas: Number(formData.plantas),
+      };
+      setLotes((prev) => [...prev, newLote]);
+    }
+
+    // Resetear
+    setFormData({ nombre: "", planta: "", fechaSiembra: "", ubicacion: "", plantas: 0 });
+    setSelectedLote(null);
+    setOpen(false);
+  };
+
+  // Cargar datos en el formulario cuando se edita
+  const openEditDialog = (lote: typeof initialLotes[0]) => {
+    setSelectedLote(lote);
+    setFormData({
+      nombre: lote.nombre,
+      planta: lote.planta,
+      fechaSiembra: lote.fechaSiembra,
+      ubicacion: lote.ubicacion,
+      plantas: lote.plantas,
+    });
+    setOpen(true);
+  };
 
   const getEstadoBadge = (estado: string) => {
     const variants = {
-      "Saludable": "default",
-      "Creciendo": "secondary",
-      "Alerta": "destructive",
+      Saludable: "default",
+      Creciendo: "secondary",
+      Alerta: "destructive",
     };
     return variants[estado as keyof typeof variants] || "default";
   };
@@ -58,77 +130,125 @@ export default function Cultivos() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-3xl font-bold text-foreground mb-2">Control de Cultivos</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-2">
+            Control de Cultivos
+          </h2>
           <p className="text-muted-foreground">Gestiona todos tus lotes de cultivo</p>
         </div>
+
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button className="gap-2">
+            <Button
+              className="gap-2"
+              onClick={() => {
+                setSelectedLote(null);
+                setFormData({
+                  nombre: "",
+                  planta: "",
+                  fechaSiembra: "",
+                  ubicacion: "",
+                  plantas: 0,
+                });
+              }}
+            >
               <Plus className="h-4 w-4" />
               Nuevo Lote
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
-              <DialogTitle>Crear Nuevo Lote</DialogTitle>
+              <DialogTitle>
+                {selectedLote ? "Editar Lote" : "Crear Nuevo Lote"}
+              </DialogTitle>
             </DialogHeader>
+
             <div className="grid gap-4 py-4">
               <div className="grid gap-2">
                 <Label htmlFor="nombre">Nombre del Lote</Label>
-                <Input id="nombre" placeholder="Ej: Lote Tomates" />
+                <Input
+                  id="nombre"
+                  value={formData.nombre}
+                  onChange={(e) => handleChange("nombre", e.target.value)}
+                  placeholder="Ej: Lote Tomates"
+                />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="planta">Tipo de Hortaliza</Label>
-                <Select>
+                <Select
+                  value={formData.planta}
+                  onValueChange={(v) => handleChange("planta", v)}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Seleccionar planta" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="tomate">Tomate</SelectItem>
-                    <SelectItem value="lechuga">Lechuga</SelectItem>
-                    <SelectItem value="pimiento">Pimiento</SelectItem>
-                    <SelectItem value="zanahoria">Zanahoria</SelectItem>
+                    <SelectItem value="Tomate Cherry">Tomate Cherry</SelectItem>
+                    <SelectItem value="Lechuga Romana">Lechuga Romana</SelectItem>
+                    <SelectItem value="Pimiento Rojo">Pimiento Rojo</SelectItem>
+                    <SelectItem value="Zanahoria">Zanahoria</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
+
               <div className="grid gap-2">
                 <Label htmlFor="fecha">Fecha de Siembra</Label>
-                <Input id="fecha" type="date" />
+                <Input
+                  id="fecha"
+                  type="date"
+                  value={formData.fechaSiembra}
+                  onChange={(e) => handleChange("fechaSiembra", e.target.value)}
+                />
               </div>
+
               <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
                   <Label htmlFor="ubicacion">Ubicación/Área</Label>
-                  <Select>
+                  <Select
+                    value={formData.ubicacion}
+                    onValueChange={(v) => handleChange("ubicacion", v)}
+                  >
                     <SelectTrigger>
                       <SelectValue placeholder="Tamaño" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="2x2">2x2m</SelectItem>
-                      <SelectItem value="4x4">4x4m</SelectItem>
-                      <SelectItem value="maceta">Maceta</SelectItem>
+                      <SelectItem value="2x2m">2x2m</SelectItem>
+                      <SelectItem value="4x4m">4x4m</SelectItem>
+                      <SelectItem value="Maceta">Maceta</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
+
                 <div className="grid gap-2">
                   <Label htmlFor="plantas">N° de Plantas</Label>
-                  <Input id="plantas" type="number" placeholder="0" />
+                  <Input
+                    id="plantas"
+                    type="number"
+                    value={formData.plantas}
+                    onChange={(e) => handleChange("plantas", e.target.value)}
+                  />
                 </div>
               </div>
             </div>
+
             <div className="flex justify-end gap-2">
-              <Button variant="outline" onClick={() => setOpen(false)}>Cancelar</Button>
-              <Button onClick={() => setOpen(false)}>Crear Lote</Button>
+              <Button variant="outline" onClick={() => setOpen(false)}>
+                Cancelar
+              </Button>
+              <Button onClick={handleSave}>
+                {selectedLote ? "Guardar Cambios" : "Crear Lote"}
+              </Button>
             </div>
           </DialogContent>
         </Dialog>
       </div>
 
+      {/* LISTA DE LOTES */}
       <div className="grid gap-4">
-        {mockLotes.map((lote) => (
-          <Card 
-            key={lote.id} 
+        {lotes.map((lote) => (
+          <Card
+            key={lote.id}
             className="cursor-pointer hover:shadow-md transition-shadow"
-            onClick={() => setSelectedLote(lote)}
+            onClick={() => openEditDialog(lote)}
           >
             <CardHeader>
               <div className="flex items-start justify-between">
@@ -176,77 +296,6 @@ export default function Cultivos() {
           </Card>
         ))}
       </div>
-
-      {/* Detail Dialog */}
-      <Dialog open={!!selectedLote} onOpenChange={() => setSelectedLote(null)}>
-        <DialogContent className="sm:max-w-[600px]">
-          <DialogHeader>
-            <DialogTitle>{selectedLote?.nombre}</DialogTitle>
-          </DialogHeader>
-          {selectedLote && (
-            <div className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label className="text-muted-foreground">ID del Lote</Label>
-                  <p className="font-medium">{selectedLote.id}</p>
-                </div>
-                <div>
-                  <Label className="text-muted-foreground">Estado</Label>
-                  <Badge variant={getEstadoBadge(selectedLote.estado) as any} className="mt-1">
-                    {selectedLote.estado}
-                  </Badge>
-                </div>
-                <div>
-                  <Label className="text-muted-foreground">Fecha de Siembra</Label>
-                  <p className="font-medium">{selectedLote.fechaSiembra}</p>
-                </div>
-                <div>
-                  <Label className="text-muted-foreground">Días Transcurridos</Label>
-                  <p className="font-medium">{selectedLote.diasTranscurridos} días</p>
-                </div>
-              </div>
-
-              <div>
-                <h4 className="font-semibold mb-3">Timeline del Ciclo de Vida</h4>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-success flex items-center justify-center">
-                      <Leaf className="h-4 w-4 text-success-foreground" />
-                    </div>
-                    <div>
-                      <p className="font-medium">Siembra</p>
-                      <p className="text-sm text-muted-foreground">{selectedLote.fechaSiembra}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center">
-                      <Leaf className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <p className="font-medium">Trasplante</p>
-                      <p className="text-sm text-muted-foreground">Pendiente</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center">
-                      <Leaf className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <p className="font-medium">Cosecha Estimada</p>
-                      <p className="text-sm text-muted-foreground">En {60 - selectedLote.diasTranscurridos} días</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex justify-end gap-2">
-                <Button variant="outline">Añadir Observación</Button>
-                <Button variant="outline">Editar Lote</Button>
-              </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

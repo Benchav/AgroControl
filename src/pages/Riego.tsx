@@ -91,15 +91,15 @@ export default function Riego() {
                   <div className="grid gap-2">
                     <Label htmlFor="cultivo">Tipo de cultivo</Label>
                     <Select value={formData.cultivo} onValueChange={(v) => setFormData({...formData, cultivo: v})}>
-                      <SelectTrigger>
+                      <SelectTrigger >
                         <SelectValue placeholder="Seleccionar" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="tomate">Tomates</SelectItem>
-                        <SelectItem value="lechuga">Lechugas</SelectItem>
-                        <SelectItem value="pimiento">Pimientos</SelectItem>
-                        <SelectItem value="zanahoria">Zanahorias</SelectItem>
-                        <SelectItem value="mixto">Cultivo Mixto</SelectItem>
+                        <SelectItem value="tomate" className="focus:bg-green-500">Tomates</SelectItem>
+                        <SelectItem value="lechuga" className="focus:bg-green-500">Lechugas</SelectItem>
+                        <SelectItem value="pimiento" className="focus:bg-green-500">Pimientos</SelectItem>
+                        <SelectItem value="zanahoria" className="focus:bg-green-500">Zanahorias</SelectItem>
+                        <SelectItem value="mixto" className="focus:bg-green-500">Cultivo Mixto</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -119,7 +119,7 @@ export default function Riego() {
                   </div>
                 </div>
               ) : (
-                <div className="space-y-6 py-4">
+                <div className="space-y-6 py-4 overflow-y-auto max-h-[80vh]">
                   <div className="flex items-center gap-2 text-success">
                     <CheckCircle2 className="h-6 w-6" />
                     <h3 className="text-lg font-semibold">Recomendación Generada</h3>
