@@ -35,25 +35,25 @@ export function AppSidebar() {
   const isCollapsed = state === "collapsed";
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-sidebar-border">
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-sidebar-foreground font-semibold">
+    <Sidebar collapsible="icon" >
+      <SidebarContent className="bg-gradient-primary">
+        <SidebarGroup className="gap-4">
+          <SidebarGroupLabel className="text-[1.6rem] text-white font-semibold">
             {!isCollapsed && "Navegación"}
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu >
               {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                <SidebarMenuItem key={item.title} >
+                  <SidebarMenuButton asChild className="hover:bg-green-600 hover:text-black">
                     <NavLink 
                       to={item.url} 
                       end={item.url === "/"}
-                      className={({ isActive }) =>
-                        isActive 
-                          ? "bg-sidebar-accent text-sidebar-primary font-medium" 
-                          : "hover:bg-sidebar-accent/50"
-                      }
+                      // className={({ isActive }) =>
+                      //   isActive 
+                      //     ? "bg-gradient-primary text-white font-medium" 
+                      //     : "hover:bg-gradient-primary/50"
+                      // }
                     >
                       <item.icon className="h-5 w-5" />
                       {!isCollapsed && <span>{item.title}</span>}
