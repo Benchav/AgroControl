@@ -24,12 +24,12 @@ export default function Riego() {
   const calculateMaterials = () => {
     const area = Number(formData.largo) * Number(formData.ancho);
     const distancia = Number(formData.distancia) || 30;
-    const numLineas = Math.floor(Number(formData.ancho) * 100 / distancia);
-    
+    const numLineas = Math.floor(Number(formData.ancho) * 100 / distancia) || 0;
+
     return {
-      tubosPrincipales: `${formData.largo}m de tubo principal (16mm)`,
-      tubosSecundarios: `${Number(formData.largo) * numLineas}m de tubería secundaria (13mm)`,
-      goteros: `${Math.floor((Number(formData.largo) * 100 / distancia) * numLineas)} goteros (2L/h)`,
+      tubosPrincipales: `${formData.largo || 0}m de tubo principal (16mm)`,
+      tubosSecundarios: `${(Number(formData.largo) * numLineas) || 0}m de tubería secundaria (13mm)`,
+      goteros: `${Math.floor((Number(formData.largo) * 100 / (distancia || 1)) * numLineas) || 0} goteros (2L/h)`,
       conectores: `${numLineas + 2} conectores en T`,
       codos: `4 codos de 90°`,
       filtro: "1 filtro de malla",
@@ -189,6 +189,43 @@ export default function Riego() {
           </Dialog>
         </CardContent>
       </Card>
+
+      {/* --- Visor 3D embebido (RealityMax) --- */}
+      <div className="mt-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Visor 3D (Real-time)</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-3">
+              Vista interactiva del modelo 3D. Puedes rotarlo y explorarlo. Si editas la escena en RealityMax,
+              los cambios se reflejarán en este visor embebido.
+            </p>
+
+            <div className="w-full rounded-lg overflow-hidden border bg-black">
+              {/* Responsive 16:9 container */}
+              <div className="relative" style={{ paddingTop: "56.25%" }}>
+                <iframe
+                  src="https://realitymax.co/b1OPJu"
+                  title="Modelo 3D - AgroControl"
+                  className="absolute inset-0 w-full h-full border-0"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div className="flex gap-2 mt-3">
+              <Button asChild>
+                <a href="https://realitymax.co/b1OPJu" target="_blank" rel="noreferrer">Abrir en pestaña nueva</a>
+              </Button>
+              <Button variant="outline" onClick={() => window.open("https://realitymax.co/b1OPJu", "_blank")}>
+                Abrir en ventana
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
 
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
