@@ -6,6 +6,7 @@ export interface PlantLote {
 
   id: string;
   nombre: string;
+  imagen:string;
   planta: string;
   fechaSiembra: string;
   diasTranscurridos: number;

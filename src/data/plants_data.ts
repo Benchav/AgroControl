@@ -1,11 +1,12 @@
-import { PlantLote } from "@/models/model_plants";
+import { PlantLote } from "@/models/plants_model";
 
-export const plantsData: PlantLote[] = [
+export var plantsData: PlantLote[] = [
   {
     id: "L001",
     nombre: "Lechuga",
     planta: "Lechuga Romana",
     fechaSiembra: "2025-09-20",
+    imagen: "🥬",
     diasTranscurridos: 20,
     estado: "Creciendo",
     ubicacion: "2x2",
@@ -23,6 +24,7 @@ export const plantsData: PlantLote[] = [
     planta: "Espinaca Verde",
     fechaSiembra: "2025-09-10",
     diasTranscurridos: 30,
+    imagen:"🍠",
     estado: "Saludable",
     ubicacion: "4x4",
     plantas: 15,
@@ -38,6 +40,7 @@ export const plantsData: PlantLote[] = [
     nombre: "Mini Pepino",
     planta: "Pepino Mini",
     fechaSiembra: "2025-08-25",
+    imagen:"🍠",
     diasTranscurridos: 45,
     estado: "Alerta",
     ubicacion: "2x2",
@@ -55,6 +58,7 @@ export const plantsData: PlantLote[] = [
     planta: "Tomate Cherry",
     fechaSiembra: "2025-09-15",
     diasTranscurridos: 25,
+    imagen: "🍅",
     estado: "Saludable",
     ubicacion: "4x4",
     plantas: 8,
@@ -70,6 +74,7 @@ export const plantsData: PlantLote[] = [
     nombre: "Rábano",
     planta: "Rábano Rojo",
     fechaSiembra: "2025-09-05",
+    imagen: "🔴",
     diasTranscurridos: 35,
     estado: "Creciendo",
     ubicacion: "2x2",
@@ -86,6 +91,7 @@ export const plantsData: PlantLote[] = [
     nombre: "Cilantro",
     planta: "Cilantro Criollo",
     fechaSiembra: "2025-08-30",
+    imagen:"🍠",
     diasTranscurridos: 40,
     estado: "Creciendo",
     ubicacion: "maceta",
@@ -102,6 +108,7 @@ export const plantsData: PlantLote[] = [
     nombre: "Remolacha",
     planta: "Remolacha Roja",
     fechaSiembra: "2025-09-01",
+    imagen:"🍠",
     diasTranscurridos: 38,
     estado: "Saludable",
     ubicacion: "4x4",
@@ -118,6 +125,7 @@ export const plantsData: PlantLote[] = [
     nombre: "Zanahoria Baby",
     planta: "Zanahoria Baby",
     fechaSiembra: "2025-09-10",
+    imagen: "🥕",
     diasTranscurridos: 28,
     estado: "Creciendo",
     ubicacion: "2x2",
@@ -136,6 +144,7 @@ export const plantsData: PlantLote[] = [
     fechaSiembra: "2025-09-12",
     diasTranscurridos: 26,
     estado: "Saludable",
+    imagen:"🍠",
     ubicacion: "maceta",
     plantas: 12,
     notas: [
@@ -151,6 +160,7 @@ export const plantsData: PlantLote[] = [
     planta: "Albahaca Italiana",
     fechaSiembra: "2025-09-18",
     diasTranscurridos: 20,
+     imagen: "🌿",
     estado: "Creciendo",
     ubicacion: "maceta",
     plantas: 5,

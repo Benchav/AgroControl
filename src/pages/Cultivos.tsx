@@ -19,44 +19,13 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Calendar, MapPin, Leaf, Sprout } from "lucide-react";
-
-const initialLotes = [
-  {
-    id: "L001",
-    nombre: "Lote Tomates Cherry",
-    planta: "Tomate Cherry",
-    fechaSiembra: "2025-09-15",
-    diasTranscurridos: 25,
-    estado: "Saludable",
-    ubicacion: "4x4m",
-    plantas: 8,
-  },
-  {
-    id: "L002",
-    nombre: "Lote Lechugas",
-    planta: "Lechuga Romana",
-    fechaSiembra: "2025-09-20",
-    diasTranscurridos: 20,
-    estado: "Creciendo",
-    ubicacion: "2x2m",
-    plantas: 12,
-  },
-  {
-    id: "L003",
-    nombre: "Lote Pimientos",
-    planta: "Pimiento Rojo",
-    fechaSiembra: "2025-08-30",
-    diasTranscurridos: 40,
-    estado: "Alerta",
-    ubicacion: "4x4m",
-    plantas: 6,
-  },
-];
+import { plantsData } from "@/data/plants_data";
+import { PlantLote } from "@/models/plants_model";
 
 export default function Cultivos() {
-  const [lotes, setLotes] = useState(initialLotes);
+  const [lotes, setLotes] = useState(plantsData);
   const [open, setOpen] = useState(false);
-  const [selectedLote, setSelectedLote] = useState<typeof initialLotes[0] | null>(null);
+  const [selectedLote, setSelectedLote] = useState<typeof plantsData[0] | null>(null);
 
   // Campos del formulario
   const [formData, setFormData] = useState({
@@ -89,9 +58,10 @@ export default function Cultivos() {
         id: `L${(lotes.length + 1).toString().padStart(3, "0")}`,
         nombre: formData.nombre,
         planta: formData.planta,
+        imagen: "🍅",
         fechaSiembra: formData.fechaSiembra,
         diasTranscurridos: 0,
-        estado: "Creciendo",
+        estado: "Creciendo"as PlantLote["estado"],
         ubicacion: formData.ubicacion,
         plantas: Number(formData.plantas),
       };
@@ -105,7 +75,7 @@ export default function Cultivos() {
   };
 
   // Cargar datos en el formulario cuando se edita
-  const openEditDialog = (lote: typeof initialLotes[0]) => {
+  const openEditDialog = (lote: typeof plantsData[0]) => {
     setSelectedLote(lote);
     setFormData({
       nombre: lote.nombre,
