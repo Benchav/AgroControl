@@ -194,12 +194,11 @@ export default function Riego() {
       <div className="mt-6">
         <Card>
           <CardHeader>
-            <CardTitle>Visor 3D (Real-time)</CardTitle>
+            <CardTitle>Modelo 3D AgroControl 1</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground mb-3">
-              Vista interactiva del modelo 3D. Puedes rotarlo y explorarlo. Si editas la escena en RealityMax,
-              los cambios se reflejarán en este visor embebido.
+              Vista interactiva modelo AgroControl 1
             </p>
 
             <div className="w-full rounded-lg overflow-hidden border bg-black">
@@ -226,6 +225,45 @@ export default function Riego() {
           </CardContent>
         </Card>
       </div>
+
+
+       
+      <div className="mt-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Modelo 3D AgroControl 2</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-3">
+              Vista interactiva modelo AgroControl 2
+            </p>
+
+            <div className="w-full rounded-lg overflow-hidden border bg-black">
+              {/* Responsive 16:9 container */}
+              <div className="relative" style={{ paddingTop: "56.25%" }}>
+                <iframe
+                  src="https://realitymax.co/4YaU4X"
+                  title="Modelo 3D - AgroControl 2"
+                  className="absolute inset-0 w-full h-full border-0"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div className="flex gap-2 mt-3">
+              <Button asChild>
+                <a href="https://realitymax.co/4YaU4X" target="_blank" rel="noreferrer">Abrir en pestaña nueva</a>
+              </Button>
+              <Button variant="outline" onClick={() => window.open("https://realitymax.co/4YaU4X", "_blank")}>
+                Abrir en ventana
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+
 
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
