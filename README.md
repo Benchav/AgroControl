@@ -1,58 +1,48 @@
-# Welcome to your Lovable project
+# AgroControl
 
-## Project info
+## Información del Proyecto
 
-**URL**: https://lovable.dev/projects/a6eac6eb-2ad0-46bf-8e9c-90240a46315b
+Plataforma completa para gestionar el ciclo de vida de tus huertas de hortalizas con herramientas de análisis, riego y recomendaciones.
 
-## How can I edit this code?
+## ¿Cómo editar este código?
 
-There are several ways of editing your application.
+**Usar tu IDE preferido**
 
-**Use Lovable**
+Clona el repositorio y realiza los cambios directamente. El único requisito es tener Node.js & npm instalados - [instalar con nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a6eac6eb-2ad0-46bf-8e9c-90240a46315b) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Sigue estos pasos:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
+# Paso 1: Clona el repositorio.
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
+# Paso 2: Navega al directorio del proyecto.
 cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
+# Paso 3: Instala las dependencias necesarias.
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Paso 4: Inicia el servidor de desarrollo.
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+**Editar un archivo directamente en GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Navega al archivo deseado.
+- Haz clic en el botón "Edit" (ícono de lápiz) en la parte superior derecha.
+- Realiza los cambios y confirma los cambios.
 
-**Use GitHub Codespaces**
+**Usar GitHub Codespaces**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Navega a la página principal de tu repositorio.
+- Haz clic en el botón "Code" (botón verde) cerca de la parte superior derecha.
+- Selecciona la pestaña "Codespaces".
+- Haz clic en "New codespace" para iniciar un nuevo entorno Codespace.
+- Edita los archivos directamente en el Codespace y confirma y empuja los cambios cuando hayas terminado.
 
-## What technologies are used for this project?
+## ¿Qué tecnologías se usan en este proyecto?
 
-This project is built with:
+Este proyecto está construido con:
 
 - Vite
 - TypeScript
@@ -60,14 +50,6 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## ¿Cómo puedo desplegar este proyecto?
 
-Simply open [Lovable](https://lovable.dev/projects/a6eac6eb-2ad0-46bf-8e9c-90240a46315b) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Puedes desplegar este proyecto en cualquier plataforma que soporte aplicaciones Node.js/Vite, como Vercel, Netlify u otras.
